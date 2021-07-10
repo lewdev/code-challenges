@@ -20,7 +20,7 @@ npm start
 
 ## 🛠️ Tools & Resources used
 
-* Bootstrap 4.5
+* Bootstrap 4.5 (CSS only)
 
 ## 👤 Author: Lewis Nakao
 I am a software engineer in Hawaii. Find more stuff I made [here](https://lewdev.github.io).

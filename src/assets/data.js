@@ -33,4 +33,6 @@ const data = [
     url: "https://code.golf/12-days-of-christmas#javascript" },
   { num: 2, name: "Fizz Buzz", method: "fizzBuzz", site: "code.golf",
     url: "https://code.golf/fizz-buzz#javascript" },
+  { num: 3, name: "Emojify", method: "emojify", site: "code.golf",
+    url: "https://code.golf/emojify#javascript" },
 ];
