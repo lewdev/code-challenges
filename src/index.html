@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" href="assets/bootstrap.min.css">
+<title>🔥lewdev code solutions</title>
+<style>
+  #output > table > tbody > tr > td > div {
+    max-width: 15rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+</style>
+</head><body class="mt-3 mb-3">
+  <div id="backBtn" class="container">
+    <button onclick="goToMenu()" class="btn btn-secondary">Back</button>
+  </div>
+
+  <div id="menu" class="container mb-3">
+    <h1>🔥lewdev code solutions</h1>
+    <table id="challenges" class="table"><tbody></tbody></table>
+  </div>
+
+  <div id="output" class="container mb-3"></div>
+
+  <div id="code" class="container mb-5" style="display:none;">
+    <div class="font-weight-bold">Code:</div>
+    <div class="p-2 rounded">
+      <div id="codeStr"></div>
+    </div>
+  </div>
+  <script src="assets/data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

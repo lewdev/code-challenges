@@ -1,0 +1,53 @@
+<!DOCTYPE html><html><head><title>Project Euler: Problem 655</title>
+<style>*{font-family:Verdana;}#output{font-size:20px}</style></head><body>
+
+<a href="/test/">Home</a>
+<h1 id="title"></h1>
+<h2>Divisible Palindromes</h2>
+<p>The numbers 545, 5995 and 15151 are the three smallest palindromes divisible by 109. There are nine palindromes less than 100000 which are divisible by 109.</p>
+<p>How many palindromes less than 10^32 are divisible by 10000019 ?</p>
+
+<p>Answer: <span id="output">Click Run...</span></p>
+<p>Time: <span id="timerDisplay">0 seconds</span></p>
+<p><button onclick="run()">Run</button></p>
+
+<script src="lib/Timer.js"></script>
+<script src="lib/isPalindrome.js"></script>
+<script>
+document.getElementById("title").innerHTML = document.getElementsByTagName("title")[0].innerHTML;
+const outputDiv = document.getElementById("output");
+const timer = new Timer();
+const MAX = 100000;
+const DIVISIBLE = 109;
+
+function run() {
+  outputDiv.innerHTML = "Loading...";
+  timer.start();
+  outputDiv.innerHTML = "<br/>" +
+    findPalindromesDivisibleBy(MAX, DIVISIBLE);
+  //!!!!! DO NOT ATTEMPT THIS with a WEAK CPU !!!!!
+  //outputDiv.innerHTML += "<br/>" +
+  //   findPalindromesDivisibleBy(Math.pow(10, 32), 10000019);
+  //!!!!! DO NOT ATTEMPT THIS with a WEAK CPU !!!!!
+  // It appears that JavaScript will run this very slowly such that I cannot even 
+  // obtain the answer. Will attempt in Java.
+  timer.stop();
+}
+
+
+function findPalindromesDivisibleBy(max, divisibleNum) {
+  let count = 0;
+  let num = 0;
+  let i = 2;
+  while (num < max) {
+    num = i++ * divisibleNum;
+    if (isPalindrome(num)) {
+      //console.log("divisibleNum=" + divisibleNum + ", num=" + num);
+      count++;
+    }
+  }
+  return "max=" + max + ", divisibleNum=" + divisibleNum
+    + ", count=" + count;
+}
+</script>
+</body></html>

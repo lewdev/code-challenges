@@ -1,0 +1,45 @@
+<!DOCTYPE html><html><head><title>Project Euler: Problem 4</title>
+<style>*{font-family:Verdana;}#output{font-size:20px}</style></head><body>
+
+<a href="/test/">Home</a>
+<h1 id="title"></h1>
+<h2>Largest palindrome product</h2>
+<p>A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.</p>
+<p>Find the largest palindrome made from the product of two 3-digit numbers.</p>
+
+<p>Answer: <span id="output">Click Run...</span></p>
+<p>Time: <span id="timerDisplay">0 seconds</span></p>
+<p><button onclick="run()">Run</button></p>
+
+<script src="lib/Timer.js"></script>
+<script src="lib/isPalindrome.js"></script>
+<script>
+document.getElementById("title").innerHTML = document.getElementsByTagName("title")[0].innerHTML;
+
+function run() {
+  timer.start();
+  outputDiv.innerHTML = findLargestPalindromeProduct(MIN, MAX);
+  timer.stop();
+}
+
+const outputDiv = document.getElementById("output");
+const timer = new Timer();
+const MIN = 100;
+const MAX = 999;
+
+function findLargestPalindromeProduct(min, max) {
+  let largest = { product: 0 };
+  for (let i = min; i <= max; i++) {
+    for (let j = min; j <= max; j++) {
+      const product = i * j;
+      if (isPalindrome(product) && product > largest.product) {
+        console.log("product=" + product + ", i=" + i + ", j=" + j);
+        largest = { product, i, j };
+      }
+    }
+  }
+  return largest.product + " = " + largest.i + " x " + largest.j;
+}
+
+</script>
+</body></html>

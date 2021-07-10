@@ -1,0 +1,85 @@
+<!DOCTYPE html><html><head><title>Project Euler: Problem 3</title>
+<style>*{font-family:Verdana;}#output{font-size:20px}</style></head><body>
+
+<a href="/test/">Home</a>
+<h1 id="title"></h1>
+<p><a href="https://projecteuler.net/problem=3">Source</a></p>
+<h2>Even Fibonacci numbers</h2>
+
+<p>The prime factors of 13195 are 5, 7, 13 and 29.</p>
+
+<p>What is the largest prime factor of the number 600851475143?</p>
+
+<p>Answer: <span id="output">Click Run...</span></p>
+<p><button onclick="run()">Run</button></p>
+
+<script>
+const outputDiv = document.getElementById("output");
+document.getElementById("title").innerHTML = document.getElementsByTagName("title")[0].innerHTML;
+
+function run() {
+  const factors1 = getLargestPrimeFactor(600851475143);
+}
+
+function getLargestPrimeFactor(input) {
+  const primeFactors = [];
+  getFactors(input).map(factor => {
+    if (isPrime(factor)) {
+      primeFactors.push(factor);
+    }
+  });
+
+  console.log(primeFactors);
+
+  const size = primeFactors.length;
+  outputDiv.innerHTML = (size > 0 ? primeFactors[size - 1] : "No prime factors found");
+}
+
+function getFactors(num) {
+  const maxFactorNum = Math.floor(Math.sqrt(num));
+  const factorArr = [];
+  let count = 0; // count of factors found < maxFactorNum
+
+  for (let i = 1; i <= maxFactorNum; i++) {
+    //inserting new elements in the middle using splice
+    if (num % i === 0) {
+      //(index, how many to remove, inserted element)
+      factorArr.splice(count, 0, i);
+      const otherFactor = num / i;
+      if (i !== otherFactor) {
+        //insert these factors in the front of the array
+        factorArr.splice(-count, 0, otherFactor);
+      }
+      count++;
+    }
+  }
+
+  //swapping first and last elements
+  const lastIndex = factorArr.length - 1;
+  const temp = factorArr[lastIndex];
+  factorArr[lastIndex] = factorArr[0];
+  factorArr[0] = temp;
+
+  return factorArr;
+}
+
+function isPrime(num) {
+  //check if value is a natural numbers (integer)
+  //without this check, it returns true
+  if (isNaN(num) || num % 1 !== 0) {
+    return false;
+  }
+  num = Math.abs(num); //*negative values can be primes
+  if (num === 0 || num === 1) {
+    return false;
+  }
+  const maxFactorNum = Math.sqrt(num);
+  for (let i = 2; i <= maxFactorNum; i++) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+  return  true;
+}
+</script>
+</body></html>
