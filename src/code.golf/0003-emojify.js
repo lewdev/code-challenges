@@ -6,7 +6,7 @@
  * Note despite how they appear below, there are no spaces in the emoticons.
  */
 
-const emojifyCode = (print, arguments) => {
+ const emojifyCode = (print, arguments) => {
   var e=`😀 :-D 🙂 :-) 😐 :-| 🙁 :-( 😕 :-\\ 😗 :-* 😮 :-O 🤐 :-# 😅 ':-D 😓 ':-( 😂 :'-) 😢 :'-( 😜 ;-P 😝 X-P 😆 X-) 😇 O:-) 😉 ;-) 😳 :-$ 😶 :- 😎 B-) 😏 :-J 😈 }:-) 👿 }:-( 😡 :-@ 😛 :-P`.split(" ");
   arguments.forEach(a=>print(e[e.indexOf(a) - 1]));
 };
