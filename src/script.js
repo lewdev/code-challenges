@@ -22,10 +22,17 @@ const run = name => {
   }
   const {url, site, num} = problem;
   const output = document.getElementById("output")
-    , title = `${num}. ${name} (${site})`;
+    , title = `${num}. ${problem.name} (☁ ${site})`;
   document.title = title;
-  output.innerHTML = `<h1>💡 ${title}</h1>
-    <a href="${url}" target="_blank">🔗 Link to Problem</a>
+  output.innerHTML = `
+    <div class="row mt-2 mb-2">
+      <div class="col-9">
+        <h1>${title}</h1>
+      </div>
+      <div class="col-3 text-right">
+        <a href="${url}" target="_blank" class="mt-2 btn btn-secondary">🔗 Link to Problem</a>
+      </div>
+    </div>
     <table id="results" class="table">
     <thead>
       <th>input</th><th>result</th><th>expected</th><th>P/F</th>
@@ -85,7 +92,11 @@ function loadScript(name) {
   fetch(urlToCode).then(res => {
     res.text().then(codeStr => {
       const code = document.getElementById("codeStr");
-      code.innerHTML = `<a href="${urlToCode}">📦 Download</a><pre><code>${codeStr}</code></pre>`;
+      code.innerHTML = `<a href="${urlToCode}">📦 Download</a><pre class="language-js"><code>${Prism.highlight(codeStr, Prism.languages.javascript, 'javascript')}</code></pre>`;
+    })
+    .then(() => {
+      console.log("Prism.highlightAll()");
+      Prism.highlightAll();
     });
   });
 };
@@ -98,8 +109,8 @@ window.onload = () => {
     currSite = a.site;
     addRow([
       `💡 ${a.num}. ${a.name} ${a.incomplete ? '<span class="text-danger">INCOMPLETE</span>' : ''}`
-      , `<a href="${a.url}" target="_blank">🔗 Link to Problem</a>`
-      , `<button class="btn btn-secondary" onclick="loadScript('${a.method}')">Run 🏃‍♂️</button>`
+      , `<a href="${a.url}" target="_blank" class="btn btn-secondary">🔗 Link to Problem</a>`
+      , `<button class="btn btn-primary" onclick="loadScript('${a.method}')">Run 🏃‍♂️</button>`
     ], tbody);
   });
   const methodName = getUrlParam('p');
@@ -114,7 +125,7 @@ window.onload = () => {
 const formatInput = input => Array.isArray(input) ? `[${input.map(a => Array.isArray(a) ? formatInput(a) : a)}]` : input;
 const addRow = (arr, tbody) => {
   const outputArr = arr.map(a => formatInput(a));
-  if (arr.length === 1) tbody.innerHTML += `<tr class="bg-secondary"><td colspan="99" class="text-light">${arr[0]}</td></tr>`;
+  if (arr.length === 1) tbody.innerHTML += `<tr class="bg-dark"><td colspan="99" class="text-light">${arr[0]}</td></tr>`;
   else tbody.innerHTML += `<tr><td><div>${outputArr.join("</div></td><td><div>")}</div></td></tr>`;
 };
 const getUrlParam = param => {

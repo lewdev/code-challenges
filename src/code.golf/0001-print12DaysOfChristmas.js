@@ -1,11 +1,3 @@
-/**
- * Instructions
- */
-const print12DaysOfChristmas = function() {
-  return print12DaysOfChristmasCode(() => {});
-};
-console.log(print12DaysOfChristmas());
-
 const print12DaysOfChristmasCode = print => {
   var c='First,Second,Third,Four,Fif,Six,Seven,Eigh,Nin,Ten,Eleven,Twelf'.split(",")
   ,a='Twelve Drummers Drumming,Eleven Pipers Piping,Ten Lords-a-Leaping,Nine Ladies Dancing,Eight Maids-a-Milking,Seven Swans-a-Swimming,Six Geese-a-Laying,Five Gold Rings,Four Calling Birds,Three French Hens,Two Turtle Doves,A Partridge in a Pear Tree'.split(",")
@@ -17,12 +9,17 @@ const print12DaysOfChristmasCode = print => {
 My true love sent to me
 ${gifts.map((a,n) => `${a}${n < size - 1 ? ',': '.'}${size > 1 && n === size - 2 ? ' and' : ''}\n`).join('')}`);
   }
-  //print(arr.join("\n"));
+  print(arr.join("\n"));
   return arr.join("\n").trim();
 };
+const print12DaysOfChristmas = function() {
+  return print12DaysOfChristmasCode(() => {});
+};
+
+console.log(print12DaysOfChristmas());
+
 /** Minified (619 bytes)
-var c='First,Second,Third,Four,Fif,Six,Seven,Eigh,Nin,Ten,Eleven,Twelf'.split(","),a='Twelve Drummers Drumming,Eleven Pipers Piping,Ten Lords-a-Leaping,Nine Ladies Dancing,Eight Maids-a-Milking,Seven Swans-a-Swimming,Six Geese-a-Laying,Five Gold Rings,Four Calling Birds,Three French Hens,Two Turtle Doves,A Partridge in a Pear Tree'.split(","),t=[],g,s,i;
-for(i=12;i>=1;i--){g=a.filter((a,n)=>n+1>=i);s=g.length;t.push(`On the ${c[12-i]+(12-i>2?'th':'')} day of Christmas
+var c='First,Second,Third,Four,Fif,Six,Seven,Eigh,Nin,Ten,Eleven,Twelf'.split(","),a='Twelve Drummers Drumming,Eleven Pipers Piping,Ten Lords-a-Leaping,Nine Ladies Dancing,Eight Maids-a-Milking,Seven Swans-a-Swimming,Six Geese-a-Laying,Five Gold Rings,Four Calling Birds,Three French Hens,Two Turtle Doves,A Partridge in a Pear Tree'.split(","),t=[],g,s,i;for(i=12;i>=1;i--){g=a.filter((a,n)=>n+1>=i);s=g.length;t.push(`On the ${c[12-i]+(12-i>2?'th':'')} day of Christmas
 My true love sent to me
 ${g.map((a,n)=>`${a}${n<s-1?',':'.'}${s>1&&n==s-2?' and':''}\n`).join('')}`)}print(t.join("\n"))
 */
