@@ -35,4 +35,6 @@ const data = [
     url: "https://code.golf/fizz-buzz#javascript" },
   { num: 3, name: "Emojify", method: "emojify", site: "code.golf",
     url: "https://code.golf/emojify#javascript" },
+  { num: 4, name: "99 Bottles of Beer", method: "nintyNineBottles", site: "code.golf",
+    url: "https://code.golf/99-bottles-of-beer#javascript" },
 ];

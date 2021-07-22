@@ -74,7 +74,7 @@ const run = name => {
     output.innerHTML += `<div><strong>Runtime:</strong> ${total}ms</div>`;
   });
 };
-let myMethod, tests, start, total;
+let myMethod, tests, start, total, selectedSite, sites;
 function loadScript(name) {
   const script = document.createElement('script');
   const problem = data.find(a => a.method === name);
@@ -95,17 +95,43 @@ function loadScript(name) {
       code.innerHTML = `<a href="${urlToCode}">📦 Download</a><pre class="language-js"><code>${Prism.highlight(codeStr, Prism.languages.javascript, 'javascript')}</code></pre>`;
     })
     .then(() => {
-      console.log("Prism.highlightAll()");
+      //console.log("Prism.highlightAll()");
       Prism.highlightAll();
     });
   });
 };
+const setSite = site => {
+  selectedSite = site;
+  // sites.map(s => {
+  //   const option = document.createElement("option");
+  //   option.value = s;
+  //   option.innerHTML = s;
+  //   siteList.appendChild(option);
+  // });
+  setUrlParam(selectedSite ? "s=" + selectedSite : "");
+  renderTopRightMenu();
+  renderTable();
+};
 window.onload = () => {
   setBackBtnShow(false);
+  
+  const methodName = getUrlParam('p');
+  if (methodName) {
+    const problem = data.find(a => a.method === methodName);
+    if (problem) loadScript(methodName, problem.num);
+  }
+  const site = getUrlParam('s');
+  if (site) setSite(site);
+  renderTopRightMenu();
+  renderTable();
+};
+const renderTable = () => {
   let currSite = null;
   const tbody = document.getElementById("challenges").querySelector("tbody");
-  data.map(a => {
-    if (!currSite || currSite !== a.site) addRow([`☁️ ${a.site}`], tbody);
+  tbody.innerHTML = "";
+  data.forEach(a => {
+    if (selectedSite && a.site !== selectedSite) return;
+    if (!currSite || currSite !== a.site) addRow([`☁️ ${a.site} (${data.filter(b => a.site === b.site).length})`], tbody);
     currSite = a.site;
     addRow([
       `💡 ${a.num}. ${a.name} ${a.incomplete ? '<span class="text-danger">INCOMPLETE</span>' : ''}`
@@ -113,58 +139,13 @@ window.onload = () => {
       , `<button class="btn btn-primary" onclick="loadScript('${a.method}')">Run 🏃‍♂️</button>`
     ], tbody);
   });
-  const methodName = getUrlParam('p');
-  if (methodName) {
-    const problem = data.find(a => a.method === methodName);
-    if (problem) loadScript(methodName, problem.num);
-  }
 };
-//-----------------------------------------------------------------------------
-// Utility Methods
-//-----------------------------------------------------------------------------
-const formatInput = input => Array.isArray(input) ? `[${input.map(a => Array.isArray(a) ? formatInput(a) : a)}]` : input;
-const addRow = (arr, tbody) => {
-  const outputArr = arr.map(a => formatInput(a));
-  if (arr.length === 1) tbody.innerHTML += `<tr class="bg-dark"><td colspan="99" class="text-light">${arr[0]}</td></tr>`;
-  else tbody.innerHTML += `<tr><td><div>${outputArr.join("</div></td><td><div>")}</div></td></tr>`;
-};
-const getUrlParam = param => {
-  var urlArr = document.location.href.split("?");
-  var queryParam = urlArr.length > 1 ? urlArr[1] : false;
-  if (queryParam) {
-    var paramArr = queryParam.split("&");
-    for (var i = 0; i < paramArr.length; i++) {
-      var paramItem = paramArr[i];
-      if (paramItem.indexOf(param + "=") === 0) {
-        return paramItem.split("=")[1].replace(/%20/g, " ");
-      }
-    }
-  }
-  return false;
-};
-const setUrlParam = param => {
-  var url = document.location.href.split("?")[0];
-  window.history.pushState({ param: param }, param, url + (param ? "?" + param : ""));
-  return false;
-};
-const pad = (input, size) => {
-  const strLen = (input + "").length;
-  const char = "0";
-  const padSize = size - strLen;
-  let arr = [];
-  for (let i = 0; i < padSize; i++) {
-    arr.push(char);
-  }
-  return arr.join("") + input;
-};
-const isEqual = (expected, result) => {
-  if (Array.isArray(expected) && Array.isArray(result) && expected.length === result.length) {
-    for (let i = 0; i < expected.length; i++) {
-      if (expected[i] !== result[i]) {
-        return false;
-      }
-    }
-    return true;
-  }
-  return expected === result;
+const renderTopRightMenu = () => {
+  const siteMap = {};
+  data.forEach(a => siteMap[a.site] = true);
+  const sites = Object.keys(siteMap);
+  // if (!selectedSite) selectedSite = sites[0];
+  topRightMenu.innerHTML = `<button class="btn btn-${!selectedSite ? 'primary' : 'secondary'}"
+  onclick="setSite('')">All</button>` + sites.map(a => `<button class="btn btn-${a === selectedSite ? 'primary' : 'secondary'}"
+    onclick="setSite('${a}')">${a}</button>`).join('');
 };
