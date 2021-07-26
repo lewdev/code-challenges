@@ -5,6 +5,42 @@ const setCodeShow = show => setShowById("code", show);
 const setBackBtnShow = show => setShowById("backBtn", show);
 const setMenuShow = show => { setShowById("menu", show); setBackBtnShow(!show); setCodeShow(!show);}
 const setOuputShow = show => { setShowById("output", show); setBackBtnShow(show); setCodeShow(show);}
+const viewTest = index => {
+  const name = getUrlParam("p");
+  if (!name) return alert("No problem name.");
+  const results = document.getElementById("results");
+  const row = results.querySelectorAll("tbody > tr")[index];
+  const tests = row.querySelectorAll("td > div");
+  const input = tests[0].innerHTML;
+  const result = tests[1].innerHTML;
+  const expected = tests[2].innerHTML;
+
+  const div = document.createElement("div");
+  div.style = "position: absolute; top: 20px;width: 90%; margin-left: 5%; margin-right: 5%; padding: 1.5rem; border: 1px solid gray;";
+  div.className = "rounded bg-light";
+
+  div.innerHTML = `
+  <p align="right">
+    <button class="btn btn-secondary" onclick="this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);">✖ Close</button>
+  </p>
+  <div class="m-2"><strong>input:</strong> ${input || 'N/A'}</div>
+  <table id="viewResult" class="table">
+    <thead>
+      <tr>
+        <th>result</th><th>expected</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><pre>${result}</pre></td><td><pre>${expected}</pre></td>
+      </tr>
+    </tbody>
+  </table>
+  <p align="right">
+    <button class="btn btn-secondary" onclick="this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);">✖ Close</button>
+  </p>`;
+  document.body.appendChild(div);
+};
 const goToMenu = () => {
   setMenuShow(true);
   setOuputShow(false);
@@ -35,7 +71,7 @@ const run = name => {
     </div>
     <table id="results" class="table">
     <thead>
-      <th>input</th><th>result</th><th>expected</th><th>P/F</th>
+      <th>input</th><th>result</th><th>expected</th><th>P/F</th><th>View</th>
     </thead>
     <tbody></tbody>
     </table>`;
@@ -50,22 +86,22 @@ const run = name => {
   //run tests
   const tbody = document.getElementById("results").querySelector("tbody");
   const promises = [];
-  tests.map(t => {
+  tests.map((t, i) => {
     promises.push(new Promise(res => {
       const input = t[0];
       let result;
-      switch (problem.params) {
+      switch (input.length) {
         case 2: result = myMethod(input[0], input[1]); break;
         case 3: result = myMethod(input[0], input[1], input[2]); break;
-        case 4: result = myMethod(input[0], input[1], input[2], input[3]); break;
-        default: result = myMethod(input);
+        default:
+          result = myMethod(input);
       }
       const expected = t[1];
-      // const pass = (expected + "") === (result + "");
       const pass = isEqual(expected, result);
       const color = pass ? 'success' : 'danger';
       const passOrFail = `<span class="badge badge-${color}">${pass ? '✔️PASS' : '⛔FAIL'}</span>`;
-      addRow([input, result, expected , passOrFail], tbody);
+      const viewBtn = `<button class="btn btn-secondary" onclick="viewTest(${i}); return false;">👁 View</button>`
+      addRow([input, result, expected , passOrFail, viewBtn], tbody);
       res();
     }));
   });
@@ -131,7 +167,7 @@ const renderTable = () => {
   tbody.innerHTML = "";
   data.forEach(a => {
     if (selectedSite && a.site !== selectedSite) return;
-    if (!currSite || currSite !== a.site) addRow([`☁️ ${a.site} (${data.filter(b => a.site === b.site).length})`], tbody);
+    if (!currSite || currSite !== a.site) addRow([`☁️ ${a.site} <span class="badge badge-secondary">${data.filter(b => a.site === b.site).length}</span>`], tbody);
     currSite = a.site;
     addRow([
       `💡 ${a.num}. ${a.name} ${a.incomplete ? '<span class="text-danger">INCOMPLETE</span>' : ''}`
