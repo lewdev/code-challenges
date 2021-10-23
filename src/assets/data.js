@@ -55,6 +55,10 @@ const data = [
     url: "https://code.golf/rock-paper-scissors-spock-lizard#javascript" },
   { num: 14, name: "Look and Say", method: "lookAndSay", site: "code.golf",
     url: "https://code.golf/look-and-say#javascript" },
+  { num: 15, name: "Pascal’s Triangle", method: "pascalsTriangle", site: "code.golf",
+    url: "https://code.golf/pascals-triangle#javascript" },
+  { num: 16, name: "Poker", method: "poker", site: "code.golf",
+    url: "https://code.golf/poker#javascript", incomplete: true },
 
   //--------- Project Euler ----------
   { num: 1, name: "Multiples of 3 and 5", method: "sumOfMultiples3and5", params: 2, site: "projecteuler",
