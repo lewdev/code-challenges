@@ -53,6 +53,8 @@ const data = [
     url: "https://code.golf/vampire-numbers#javascript" },
   { num: 13, name: "Rock Paper Scissors Spock Lizard", method: "rpssl", site: "code.golf",
     url: "https://code.golf/rock-paper-scissors-spock-lizard#javascript" },
+  { num: 14, name: "Look and Say", method: "lookAndSay", site: "code.golf",
+    url: "https://code.golf/look-and-say#javascript" },
 
   //--------- Project Euler ----------
   { num: 1, name: "Multiples of 3 and 5", method: "sumOfMultiples3and5", params: 2, site: "projecteuler",
