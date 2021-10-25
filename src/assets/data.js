@@ -2,7 +2,23 @@
  * Displays and runs any or all of the tests.
  */
 const data = [
-  //{ num: 2, name: "", method: "addTwoNumbers", url: "" },
+  //--------- fbprep ----------
+  { num: 1, name: "Rotational Cipher", method: "rotationalCipher", params: 2, site: "fbprep",
+    url: "https://www.facebookrecruiting.com/portal/coding_practice_question/?problem_id=238827593802550&ppid=454615229006519&practice_plan=1" },
+  { num: 2, name: "Contiguous Subarrays", method: "countSubarrays", site: "fbprep",
+    url: "https://www.facebookrecruiting.com/portal/coding_practice_question/?problem_id=226517205173943&ppid=454615229006519&practice_plan=1" },
+  { num: 3, name: "Pair Sums", method: "numberOfWays", params: 2, site: "fbprep",
+    url: "https://www.facebookrecruiting.com/portal/coding_practice_question/?problem_id=840934449713537&ppid=454615229006519&practice_plan=1" },
+  { num: 4, name: "Reverse to Make Equal", method: "areTheyEqual", params: 2, site: "fbprep",
+    url: "https://www.facebookrecruiting.com/portal/coding_practice_question/?problem_id=2869293499822992&ppid=454615229006519&practice_plan=0" },
+  { num: 5, name: "Passing Yearbooks", method: "findSignatureCounts", site: "fbprep",
+    url: "https://www.facebookrecruiting.com/portal/coding_practice_question/?problem_id=146466059993201&ppid=454615229006519&practice_plan=0" },
+  { num: 6, name: "Minimizing Permutations", method: "minOperations", site: "fbprep",
+    url: "https://www.facebookrecruiting.com/portal/coding_practice_question/?problem_id=292715105029046&ppid=454615229006519&practice_plan=0" },
+  // { num: , name: "", method: "", params: 2, site: "fbprep",
+  //   url: "" },
+
+  //--------- leetcode ----------
   { num: 3, name: "Length of Longest Substring", method: "lengthOfLongestSubstring", site: "leetcode",
     url: "https://leetcode.com/problems/longest-substring-without-repeating-characters" },
   { num: 4, name: "Find Median Sorted Arrays", method: "findMedianSortedArrays", params: 2, site: "leetcode",
@@ -23,10 +39,6 @@ const data = [
     url: "https://leetcode.com/problems/special-array-with-x-elements-greater-than-or-equal-x" },
   { num: 1609, name: "Even Odd Tree", method: "isEvenOddTree", site: "leetcode",
     url: "https://leetcode.com/problems/even-odd-tree/", incomplete: true },
-
-  //--------- fbprep ----------
-  { num: 1, name: "Rotational Cipher", method: "rotationalCipher", params: 2, site: "fbprep",
-    url: "https://www.facebookrecruiting.com/portal/coding_practice_question/?problem_id=238827593802550&ppid=454615229006519&practice_plan=1" },
 
   //--------- code.golf ----------
   { num: 1, name: "12 Days of Christmas", method: "print12DaysOfChristmas", site: "code.golf",

@@ -42,10 +42,14 @@ const viewTest = index => {
   document.body.appendChild(div);
 };
 const goToMenu = () => {
+  const name = getUrlParam("p");
+  if (name) {
+    const problem = data.find(a => a.method === name);
+    if (problem) setSite(problem.site)
+  }
   setMenuShow(true);
   setOuputShow(false);
-  setUrlParam("");
-  document.title = "🔥lewdev code solutions";
+  document.title = "lewdev code solutions";
 };
 const run = name => {
   setMenuShow(false);
