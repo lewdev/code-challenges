@@ -60,7 +60,7 @@ const run = name => {
     output.innerHTML = `Problem "${name}" not found.`;
     return;
   }
-  const {url, site, num} = problem;
+  const {url, site, num, params} = problem;
   const output = document.getElementById("output")
     , title = `${num}. ${problem.name} (☁ ${site})`;
   document.title = title;
@@ -75,7 +75,7 @@ const run = name => {
     </div>
     <table id="results" class="table">
     <thead>
-      <th>input</th><th>result</th><th>expected</th><th>P/F</th><th>View</th>
+      <th>${"input,result,expected,P/F,View".split(",").join("</th><th>")}</th>
     </thead>
     <tbody></tbody>
     </table>`;
@@ -94,7 +94,7 @@ const run = name => {
     promises.push(new Promise(res => {
       const input = t[0];
       let result;
-      switch (input.length) {
+      switch (params || 1) {
         case 2: result = myMethod(input[0], input[1]); break;
         case 3: result = myMethod(input[0], input[1], input[2]); break;
         default:

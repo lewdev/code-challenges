@@ -3,17 +3,17 @@
  */
 const data = [
   //--------- fbprep ----------
-  { num: 1, name: "Rotational Cipher", method: "rotationalCipher", params: 2, site: "fbprep",
+  { num: 1, name: "Rotational Cipher", method: "rotationalCipher", params: 2, site: "fbprep", categories: ["Starter Plan", "Strings"],
     url: "https://www.facebookrecruiting.com/portal/coding_practice_question/?problem_id=238827593802550&ppid=454615229006519&practice_plan=1" },
-  { num: 2, name: "Contiguous Subarrays", method: "countSubarrays", site: "fbprep",
+  { num: 2, name: "Contiguous Subarrays", method: "countSubarrays", site: "fbprep", categories: ["Starter Plan", "Arrays"],
     url: "https://www.facebookrecruiting.com/portal/coding_practice_question/?problem_id=226517205173943&ppid=454615229006519&practice_plan=1" },
-  { num: 3, name: "Pair Sums", method: "numberOfWays", params: 2, site: "fbprep",
+  { num: 3, name: "Pair Sums", method: "numberOfWays", params: 2, site: "fbprep", categories: ["Starter Plan", "Hash Tables"],
     url: "https://www.facebookrecruiting.com/portal/coding_practice_question/?problem_id=840934449713537&ppid=454615229006519&practice_plan=1" },
-  { num: 4, name: "Reverse to Make Equal", method: "areTheyEqual", params: 2, site: "fbprep",
+  { num: 4, name: "Reverse to Make Equal", method: "areTheyEqual", params: 2, site: "fbprep", categories: ["Arrays"],
     url: "https://www.facebookrecruiting.com/portal/coding_practice_question/?problem_id=2869293499822992&ppid=454615229006519&practice_plan=0" },
-  { num: 5, name: "Passing Yearbooks", method: "findSignatureCounts", site: "fbprep",
+  { num: 5, name: "Passing Yearbooks", method: "findSignatureCounts", site: "fbprep", categories: ["Arrays"],
     url: "https://www.facebookrecruiting.com/portal/coding_practice_question/?problem_id=146466059993201&ppid=454615229006519&practice_plan=0" },
-  { num: 6, name: "Minimizing Permutations", method: "minOperations", site: "fbprep",
+  { num: 6, name: "Minimizing Permutations", method: "minOperations", site: "fbprep", categories: ["Graphs"],
     url: "https://www.facebookrecruiting.com/portal/coding_practice_question/?problem_id=292715105029046&ppid=454615229006519&practice_plan=0" },
   // { num: , name: "", method: "", params: 2, site: "fbprep",
   //   url: "" },

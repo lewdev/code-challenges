@@ -8,38 +8,28 @@ const isSorted = arr => {
 }
 
 function minOperations(arr) {
-  // Write your code here
   const stepMap = subReverseArr(arr, {}, 0);
-  console.log(`stepMap`, stepMap);
   const steps = Object.keys(stepMap).map(s => parseInt(s));
   steps.sort();
-  console.log(`steps`, steps);
-  return steps.length > 0 ? steps[0] : "FAILED";
+  return steps.length > 0 ? steps[0] : 0;
 }
 
 const subReverseArr = (arr, stepMap, step) => {
-  console.log("subReverseArr", arr, stepMap, step);
-  console.log(arr);
-  if (step > 3) {
-    console.log("stepMap exceeded", step);
-    return null;
-  }//prevent inifinite loops
+  //prevent going too deep into permutations
+  if (step > Math.floor(arr.length / 2)) return;//prevent inifinite loops
   const size = arr.length;
+  let found = false;
   for (let i = 0; i < size; i++) {
-    for (let j = 2; j < size; j++) {
-      // console.log(i, j);
+    for (let j = 2; j <= size; j++) {
       //remove existing array items and add reversed array
       const subReversed = [...arr].splice(i, j).reverse()
       let tempArr = [...arr];
       tempArr.splice(i, j, ...subReversed);
       if (isSorted(tempArr)) {
         stepMap[step + 1] = 1;
-        i = j = size;
-        console.log("SORTED step: ", step + 1,  stepMap);
-        return;
+        found = i = j = size;
       }
-      if (subReverseArr(tempArr, stepMap, step + 1)) return;
-      // subReverseArr(arr, stepMap, step + 1);
+      if (!found) Object.assign(stepMap, subReverseArr(tempArr, stepMap, step + 1));
     }
   }
   return stepMap;
@@ -84,6 +74,6 @@ var expected_2 = 2;
 
 // Add your own test cases here
 const minOperationsTests = [
-  // [arr_1, expected_1],
+  [arr_1, expected_1],
   [arr_2, expected_2],
-]
+];
