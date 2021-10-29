@@ -18,6 +18,10 @@ const data = [
   // { num: , name: "", method: "", params: 2, site: "fbprep",
   //   url: "" },
 
+  //--------- hackerrank ----------
+  { num: 1, name: "Balanced Brackets", method: "isBalanced", site: "hackerrank",
+    url: "https://www.hackerrank.com/challenges/balanced-brackets/problem" },
+
   //--------- leetcode ----------
   { num: 3, name: "Length of Longest Substring", method: "lengthOfLongestSubstring", site: "leetcode",
     url: "https://leetcode.com/problems/longest-substring-without-repeating-characters" },

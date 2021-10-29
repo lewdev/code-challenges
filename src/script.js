@@ -16,7 +16,7 @@ const viewTest = index => {
   const expected = tests[2].innerHTML;
 
   const div = document.createElement("div");
-  div.style = "position: absolute; top: 20px;width: 90%; margin-left: 5%; margin-right: 5%; padding: 1.5rem; border: 1px solid gray;";
+  div.style = "position: fixed; top: 20px;width: 90%; margin-left: 5%; margin-right: 5%; padding: 1.5rem; border: 1px solid gray;";
   div.className = "rounded bg-light";
 
   div.innerHTML = `
