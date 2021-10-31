@@ -19,8 +19,16 @@ const data = [
   //   url: "" },
 
   //--------- hackerrank ----------
-  { num: 1, name: "Balanced Brackets", method: "isBalanced", site: "hackerrank",
+  { num: 1, name: "Balanced Brackets", method: "isBalanced", site: "hackerrank", difficulty: "Medium",
     url: "https://www.hackerrank.com/challenges/balanced-brackets/problem" },
+  { num: 2, name: "Tree: Height of a Binary Tree", method: "heightCode", site: "hackerrank", difficulty: "Easy",
+    url: "https://www.hackerrank.com/challenges/tree-height-of-a-binary-tree/problem" },
+  { num: 3, name: "Tree: Level Order Traversal", method: "levelOrderCode", site: "hackerrank", difficulty: "Easy",
+    url: "https://www.hackerrank.com/challenges/tree-level-order-traversal/problem" },
+  { num: 4, name: "Contacts", method: "contacts", site: "hackerrank", difficulty: "Medium",
+    url: "https://www.hackerrank.com/challenges/contacts/problem" },
+  // { num: , name: "", method: "", site: "hackerrank", difficulty: "Easy",
+  //   url: "" },
 
   //--------- leetcode ----------
   { num: 3, name: "Length of Longest Substring", method: "lengthOfLongestSubstring", site: "leetcode",
