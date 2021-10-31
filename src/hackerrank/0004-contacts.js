@@ -32,7 +32,6 @@ const contactResults = (tree, input) => {
     if (!node[input.substr(0, i)]) return 0;
     node = node[input.substr(0, i)];
   }
-  // console.log("contactResults 2", input, tree);
   if (input.length >= DEPTH && node.contacts) return node.contacts.filter(c => c.startsWith(input)).length;
   return node.count;
 };
