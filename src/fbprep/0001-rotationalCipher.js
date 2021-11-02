@@ -21,33 +21,7 @@ function rotationalCipher(input, rotationFactor) {
   return output;
 }
 
-// These are the tests we use to determine if the solution is correct.
-// You can add your own at the bottom.
-function printString(str) {
-  var out = '["' + str + '"]';
-  return out;
-}
 
-var test_case_number = 1;
-
-function check(expected, output) {
-  var result = (expected == output);
-  var rightTick = "\u2713";
-  var wrongTick = "\u2717";
-  if (result) {
-    var out = rightTick + ' Test #' + test_case_number;
-    console.log(out);
-  }
-  else {
-    var out = '';
-    out += wrongTick + ' Test #' + test_case_number + ': Expected ';
-    out += printString(expected);
-    out += ' Your output: ';
-    out += printString(output);
-    console.log(out);
-  }
-  test_case_number++;
-}
 
 var input_1 = "All-convoYs-9-be:Alert1.";
 var rotationFactor_1 = 4;

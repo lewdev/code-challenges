@@ -8,31 +8,6 @@ function numberOfWays(arr, k) {
   return pairs;
 }
 
-// These are the tests we use to determine if the solution is correct.
-// You can add your own at the bottom.
-const printInteger = n => `[${n}]`;
-
-var test_case_number = 1;
-
-function check(expected, output) {
-  var result = (expected == output);
-  var rightTick = "\u2713";
-  var wrongTick = "\u2717";
-  if (result) {
-    var out = rightTick + ' Test #' + test_case_number;
-    console.log(out);
-  }
-  else {
-    var out = '';
-    out += wrongTick + ' Test #' + test_case_number + ': Expected ';
-    out += printInteger(expected);
-    out += ' Your output: ';
-    out += printInteger(output);
-    console.log(out);
-  }
-  test_case_number++;
-}
-
 var k_1 = 6;
 var arr_1 = [1, 2, 3, 4, 3];
 var expected_1 = 2;

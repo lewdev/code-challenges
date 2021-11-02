@@ -45,4 +45,18 @@ const contactsTests = [
     [["add", "asdfhack"], ["add", "asdfhackerrank"], ["add", "as"], ["find", "asdf"], ["find", "as"]],
     [2, 3]
   ],
-]
+];
+
+/*
+NOTES:
+
+This uses a "Trie" a search tree for finding specific keys in a set.
+
+This traverses using depth-first-search.
+
+This is faster in the worst case O(m) time (where m is the length of the string). This has O(1) time.
+
+Cons:
+* Can be slower when accessed from a hard drive where random-access time is high.
+* Tries can require more space than a hash table.
+*/

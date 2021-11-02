@@ -35,31 +35,6 @@ const subReverseArr = (arr, stepMap, step) => {
   return stepMap;
 }
 
-
-// These are the tests we use to determine if the solution is correct.
-// You can add your own at the bottom.
-function printInteger(n) {
-  var out = '[' + n + ']';
-  return out;
-}
-
-var test_case_number = 1;
-var rightTick = "\u2713";
-var wrongTick = "\u2717";
-
-function check(expected, output) {
-  console.log("check", expected, output)
-  if (expected == output) {
-    console.log(`${rightTick} Test # ${test_case_number}`);
-  }
-  else {
-    console.log(
-      `${wrongTick} Test #${test_case_number}: Expected ${printInteger(expected)} Your output: ${printInteger(output)}`
-    );
-  }
-  test_case_number++;
-}
-
 var n_1 = 5;
 var arr_1 = [1, 2, 5, 4, 3];
 var expected_1 = 1;

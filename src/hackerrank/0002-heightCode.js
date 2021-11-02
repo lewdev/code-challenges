@@ -1,5 +1,12 @@
 const heightCode = inputs => height(createTree(inputs));
 
+/**
+ * Returns the number of levels to the tree.
+ * Solution uses recursion to traverse the tree
+ * Uses depth-first-search.
+ * @param {*} root 
+ * @returns 
+ */
 const height = root => {
   if (!root) return -1;
   const right = height(root.right);

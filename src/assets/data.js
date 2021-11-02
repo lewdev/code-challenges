@@ -15,9 +15,15 @@ const data = [
     url: "https://www.facebookrecruiting.com/portal/coding_practice_question/?problem_id=146466059993201&ppid=454615229006519&practice_plan=0" },
   { num: 6, name: "Minimizing Permutations", method: "minOperations", site: "fbprep", categories: ["Graphs"],
     url: "https://www.facebookrecruiting.com/portal/coding_practice_question/?problem_id=292715105029046&ppid=454615229006519&practice_plan=0" },
-  // { num: , name: "", method: "", params: 2, site: "fbprep",
+  { num: 7, name: "Largest Triple Products", method: "findMaxProduct", site: "fbprep", categories: ["Heaps"],
+    url: "https://www.facebookrecruiting.com/portal/coding_practice_question/?problem_id=510655302929581&c=1487359448291480&ppid=454615229006519&practice_plan=0" },
+  { num: 8, name: "Slow Sums", method: "getTotalTime", site: "fbprep", categories: ["Greedy algorithms"],
+    url: "https://www.facebookrecruiting.com/portal/coding_practice_question/?problem_id=836241573518034&c=1487359448291480&ppid=454615229006519&practice_plan=0" },
+  { num: 9, name: "Element Swapping", method: "findMinArray", site: "fbprep", params: 2, categories: ["Greedy algorithms"],
+    url: "https://www.facebookrecruiting.com/portal/coding_practice_question/?problem_id=838749853303393&c=1487359448291480&ppid=454615229006519&practice_plan=0" },
+  // { num: , name: "", method: "", site: "fbprep", categories: [""],
   //   url: "" },
-
+  
   //--------- hackerrank ----------
   { num: 1, name: "Balanced Brackets", method: "isBalanced", site: "hackerrank", difficulty: "Medium",
     url: "https://www.hackerrank.com/challenges/balanced-brackets/problem" },
@@ -27,8 +33,14 @@ const data = [
     url: "https://www.hackerrank.com/challenges/tree-level-order-traversal/problem" },
   { num: 4, name: "Contacts", method: "contacts", site: "hackerrank", difficulty: "Medium",
     url: "https://www.hackerrank.com/challenges/contacts/problem" },
+  { num: 5, name: "Find the Running Median", method: "runningMedian", site: "hackerrank", difficulty: "Hard",
+    url: "https://www.hackerrank.com/challenges/find-the-running-median", incomplete: true },
+  { num: 6, name: "Swap Nodes [Algo]", method: "swapNodes", site: "hackerrank", difficulty: "Easy",
+    url: "https://www.hackerrank.com/challenges/swap-nodes-algo/problem" },
   // { num: , name: "", method: "", site: "hackerrank", difficulty: "Easy",
   //   url: "" },
+  // https://www.hackerrank.com/challenges/find-the-running-median
+  // https://www.hackerrank.com/challenges/swap-nodes-algo
 
   //--------- leetcode ----------
   { num: 3, name: "Length of Longest Substring", method: "lengthOfLongestSubstring", site: "leetcode",
@@ -41,6 +53,8 @@ const data = [
     url: "https://leetcode.com/problems/zigzag-conversion" },
   { num: 8, name: "String to Integer (atoi)", method: "myAtoi", site: "leetcode",
     url: "https://leetcode.com/problems/string-to-integer-atoi/submissions/" },
+  { num: 140, name: "Word Break II", method: "wordBreak", params: 2, site: "leetcode",
+    url: "https://leetcode.com/problems/word-break-ii/" },
   { num: 993, name: "Number of Recent Calls", method: "numberOfRecentCalls", site: "leetcode",
     url: "https://leetcode.com/problems/number-of-recent-calls/" },
   { num: 1288, name: "Remove Covered Intervals", method: "removeCoveredIntervals", site: "leetcode",

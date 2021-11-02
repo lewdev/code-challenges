@@ -20,31 +20,6 @@ function areTheyEqual(array_a, array_b){
   return false;
 }
 
-// These are the tests we use to determine if the solution is correct.
-// You can add your own at the bottom.
-const printString = s => `["${s}"]`;
-
-var test_case_number = 1;
-
-function check(expected, output) {
-  var result = (expected == output);
-  var rightTick = "\u2713";
-  var wrongTick = "\u2717";
-  if (result) {
-    var out = rightTick + ' Test #' + test_case_number;
-    console.log(out);
-  }
-  else {
-    var out = '';
-    out += wrongTick + ' Test #' + test_case_number + ': Expected ';
-    out += printString(expected);
-    out += ' Your output: ';
-    out += printString(output);
-    console.log(out);
-  }
-  test_case_number++;
-}
-
 var array_a_1 = [1, 2, 3, 4];
 var array_b_1 = [1, 4, 3, 2];
 var expected_1 = true;
