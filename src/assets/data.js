@@ -41,8 +41,10 @@ const data = [
   //   url: "" },
   // https://www.hackerrank.com/challenges/find-the-running-median
   // https://www.hackerrank.com/challenges/swap-nodes-algo
-
+  
   //--------- leetcode ----------
+  { num: 2, name: "Add Two Numbers", method: "addTwoNumbers2", params: 2, site: "leetcode", difficulty: "Medium", tags: ['fb'],
+    url: "https://leetcode.com/problems/add-two-numbers/" },
   { num: 3, name: "Length of Longest Substring", method: "lengthOfLongestSubstring", site: "leetcode",
     url: "https://leetcode.com/problems/longest-substring-without-repeating-characters" },
   { num: 4, name: "Find Median Sorted Arrays", method: "findMedianSortedArrays", params: 2, site: "leetcode",
@@ -55,8 +57,12 @@ const data = [
     url: "https://leetcode.com/problems/string-to-integer-atoi/submissions/" },
   { num: 43, name: "Multiply Strings", method: "multiply", params: 2, site: "leetcode", difficulty: "Medium",
     url: "https://leetcode.com/problems/multiply-strings/", incomplete: true  },
-  { num: 140, name: "Word Break II", method: "wordBreak", params: 2, site: "leetcode",
+  { num: 140, name: "Word Break II", method: "wordBreak", params: 2, site: "leetcode", difficulty: "Hard",
     url: "https://leetcode.com/problems/word-break-ii/" },
+  { num: 227, name: "Basic Calculator II", method: "calculate", site: "leetcode", difficulty: "Medium", tags: ['fb'],
+    url: "https://leetcode.com/problems/basic-calculator-ii/" },
+  { num: 415, name: "Add Strings", method: "addStrings", params: 2, site: "leetcode", difficulty: "Easy",
+    url: "https://leetcode.com/problems/add-strings/" },
   { num: 993, name: "Number of Recent Calls", method: "numberOfRecentCalls", site: "leetcode",
     url: "https://leetcode.com/problems/number-of-recent-calls/" },
   { num: 1288, name: "Remove Covered Intervals", method: "removeCoveredIntervals", site: "leetcode",
@@ -67,6 +73,8 @@ const data = [
     url: "https://leetcode.com/problems/special-array-with-x-elements-greater-than-or-equal-x" },
   { num: 1609, name: "Even Odd Tree", method: "isEvenOddTree", site: "leetcode",
     url: "https://leetcode.com/problems/even-odd-tree/", incomplete: true },
+    // { num: , name: "", method: "", site: "leetcode", difficulty: "Easy", tags: ['fb'],
+    //   url: "" },
 
   //--------- code.golf ----------
   { num: 1, name: "12 Days of Christmas", method: "print12DaysOfChristmas", site: "code.golf",
