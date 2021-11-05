@@ -53,6 +53,8 @@ const data = [
     url: "https://leetcode.com/problems/zigzag-conversion" },
   { num: 8, name: "String to Integer (atoi)", method: "myAtoi", site: "leetcode",
     url: "https://leetcode.com/problems/string-to-integer-atoi/submissions/" },
+  { num: 43, name: "Multiply Strings", method: "multiply", params: 2, site: "leetcode", difficulty: "Medium",
+    url: "https://leetcode.com/problems/multiply-strings/", incomplete: true  },
   { num: 140, name: "Word Break II", method: "wordBreak", params: 2, site: "leetcode",
     url: "https://leetcode.com/problems/word-break-ii/" },
   { num: 993, name: "Number of Recent Calls", method: "numberOfRecentCalls", site: "leetcode",
