@@ -40,4 +40,4 @@ check(expected_2, output_2);
 const countSubarraysTests = [
   [test_1, expected_1],
   [test_2, expected_2],
-]
+];

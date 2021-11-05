@@ -1,5 +1,5 @@
 const ABC     = "abcdefghijklmnopqrstuvwxyz";
-const ABC_CAP = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const ABC_CAP = ABC.toUpperCase();
 const NUM     = "1234567890";
 
 const getRot = (cipher, char, rotationFactor) => {

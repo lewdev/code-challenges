@@ -60,7 +60,7 @@ const run = name => {
     output.innerHTML = `Problem "${name}" not found.`;
     return;
   }
-  const {url, site, num, params} = problem;
+  const {url, site, num, params, difficulty, incomplete} = problem;
   const output = document.getElementById("output")
     , title = `${num}. ${problem.name} (☁ ${site})`;
   document.title = title;
@@ -68,8 +68,10 @@ const run = name => {
     <div class="row mt-2 mb-2">
       <div class="col-9">
         <h1>${title}</h1>
+        ${incomplete ? `<div class="text-danger">INCOMPLETE</div>` : ''}
       </div>
       <div class="col-3 text-right">
+        ${showDifficulty(difficulty)}
         <a href="${url}" target="_blank" class="mt-2 btn btn-secondary">🔗 Link to Problem</a>
       </div>
     </div>
@@ -135,26 +137,36 @@ function loadScript(name) {
       code.innerHTML = `<a href="${urlToCode}">📦 Download</a><pre class="language-js"><code>${Prism.highlight(codeStr, Prism.languages.javascript, 'javascript')}</code></pre>`;
     })
     .then(() => {
-      //console.log("Prism.highlightAll()");
       Prism.highlightAll();
     });
   });
 };
 const setSite = site => {
   selectedSite = site;
-  // sites.map(s => {
-  //   const option = document.createElement("option");
-  //   option.value = s;
-  //   option.innerHTML = s;
-  //   siteList.appendChild(option);
-  // });
   setUrlParam(selectedSite ? "s=" + selectedSite : "");
   renderTopRightMenu();
   renderTable();
 };
+const showDifficultyCount = (data, site, diff) => {
+  const count = data.filter(a => a.site === site && a.difficulty === diff).length;
+  return count > 0 ? `<span class="badge badge-${getDiffClass(diff)}">${count} ${diff}</span>` : '';
+};
+const showDifficulty = diff => {
+  if (!diff) return "";
+  return `<span class="badge badge-${getDiffClass(diff)}">${diff}</span>`;
+};
+const getDiffClass = diff => {
+  let className;
+  switch (diff) {
+    case "Medium": className = "warning"; break;
+    case "Hard": className = "danger"; break;
+    case "Easy": className = "success"; break;
+    default: className = "secondary";
+  }
+  return className;
+};
 window.onload = () => {
   setBackBtnShow(false);
-  
   const methodName = getUrlParam('p');
   if (methodName) {
     const problem = data.find(a => a.method === methodName);
@@ -171,10 +183,21 @@ const renderTable = () => {
   tbody.innerHTML = "";
   data.forEach(a => {
     if (selectedSite && a.site !== selectedSite) return;
-    if (!currSite || currSite !== a.site) addRow([`☁️ ${a.site} <span class="badge badge-secondary">${data.filter(b => a.site === b.site).length}</span>`], tbody);
+    if (!currSite || currSite !== a.site) addRow([
+      `<div class="row">
+        <div class="col-6">
+          ☁️ ${a.site}
+          <span class="badge badge-secondary">${data.filter(b => a.site === b.site).length} total</span>
+        </div>
+        <div class="col-6 text-right">
+          ${["Easy", "Medium", "Hard"].map(d => showDifficultyCount(data, a.site, d)).join(" ")}
+        </div>
+      </div>`
+    ], tbody);
     currSite = a.site;
     addRow([
       `💡 ${a.num}. ${a.name} ${a.incomplete ? '<span class="text-danger">INCOMPLETE</span>' : ''}`
+      , showDifficulty(a.difficulty)
       , `<a href="${a.url}" target="_blank" class="btn btn-secondary">🔗 Link to Problem</a>`
       , `<button class="btn btn-primary" onclick="loadScript('${a.method}')">Run 🏃‍♂️</button>`
     ], tbody);
@@ -185,7 +208,11 @@ const renderTopRightMenu = () => {
   data.forEach(a => siteMap[a.site] = true);
   const sites = Object.keys(siteMap);
   // if (!selectedSite) selectedSite = sites[0];
-  topRightMenu.innerHTML = `<button class="btn btn-${!selectedSite ? 'primary' : 'secondary'}"
-  onclick="setSite('')">All</button>` + sites.map(a => `<button class="btn btn-${a === selectedSite ? 'primary' : 'secondary'}"
-    onclick="setSite('${a}')">${a}</button>`).join('');
+  topRightMenu.innerHTML = `<button class="btn btn-${!selectedSite ? 'primary' : 'secondary'}" 
+    onclick="setSite('')">All <span class="badge badge-info">${data.length}</span></button>`
+    + sites.map(a => `<button class="btn btn-${a === selectedSite ? 'primary' : 'secondary'}"
+    onclick="setSite('${a}')">
+      ${a}
+      <span class="badge badge-info">${data.filter(b => b.site === a).length}</span>
+    </button>`).join('');
 };
