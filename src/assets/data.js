@@ -81,6 +81,8 @@ const data = [
     url: "https://leetcode.com/problems/special-array-with-x-elements-greater-than-or-equal-x" },
   { num: 1609, name: "Even Odd Tree", method: "isEvenOddTree", site: "leetcode", difficulty: "Medium",
     url: "https://leetcode.com/problems/even-odd-tree/", incomplete: true },
+  { num: 9001, name: "Minimum Swaps to Group All 1's Together", method: "minSwaps", site: "leetcode", difficulty: "Medium", tags: ['amazon'],
+    url: "https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together/" },//number is unknown
   // { num: , name: "", method: "", site: "leetcode", difficulty: "Easy", tags: ['fb'],
   //   url: "" },
 
