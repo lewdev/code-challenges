@@ -77,6 +77,8 @@ const data = [
     url: "https://leetcode.com/problems/number-of-recent-calls/" },
   { num: 1288, name: "Remove Covered Intervals", method: "removeCoveredIntervals", site: "leetcode", difficulty: "Medium",
     url: "https://leetcode.com/problems/remove-covered-intervals/" },
+  { num: 1343, name: "Number of Sub-arrays of Size K and Average Greater than or Equal to Threshold", method: "numOfSubarrays", params: 3, site: "leetcode", difficulty: "Medium",
+    url: "https://leetcode.com/problems/number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold/" },
   { num: 1608, name: "Special Array With X Elements Greater Than or Equal X", method: "specialArray", site: "leetcode", difficulty: "Easy",
     url: "https://leetcode.com/problems/special-array-with-x-elements-greater-than-or-equal-x" },
   { num: 1609, name: "Even Odd Tree", method: "isEvenOddTree", site: "leetcode", difficulty: "Medium",
