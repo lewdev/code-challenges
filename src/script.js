@@ -184,7 +184,7 @@ const renderTable = () => {
   data.forEach(a => {
     if (selectedSite && a.site !== selectedSite) return;
     if (!currSite || currSite !== a.site) addRow([
-      `<div class="row">
+      `<div class="row rounded">
         <div class="col-6">
           ☁️ ${a.site}
           <span class="badge badge-secondary">${data.filter(b => a.site === b.site).length} total</span>
@@ -196,7 +196,7 @@ const renderTable = () => {
     ], tbody);
     currSite = a.site;
     addRow([
-      `💡 ${a.num}. ${a.name} ${a.incomplete ? '<span class="text-danger">INCOMPLETE</span>' : ''}`
+      `💡 ${a.num}. ${a.name} ${a.incomplete ? '<span class="text-danger">INCOMPLETE</span>' : ''} <code>${a.method}</code>`
       , showDifficulty(a.difficulty)
       , `<a href="${a.url}" target="_blank" class="btn btn-secondary">🔗 Link to Problem</a>`
       , `<button class="btn btn-primary" onclick="loadScript('${a.method}')">Run 🏃‍♂️</button>`

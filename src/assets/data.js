@@ -91,6 +91,8 @@ const data = [
     url: "https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together/" },//number is unknown
   { num: 1359, name: "Count All Valid Pickup and Delivery Options", method: "countOrders", site: "leetcode", difficulty: "Hard", tags: ['fb'],
     url: "https://leetcode.com/problems/count-all-valid-pickup-and-delivery-options/" },
+  { num: 210, name: "Course Schedule II", method: "findOrder", params: 2, site: "leetcode", difficulty: "Medium", tags: ['fb'],
+    url: "https://leetcode.com/problems/course-schedule-ii/" },
   // { num: , name: "", method: "", site: "leetcode", difficulty: "Easy", tags: ['fb'],
   //   url: "" },
 
