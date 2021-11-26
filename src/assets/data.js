@@ -1,5 +1,8 @@
 /**
  * Displays and runs any or all of the tests.
+ * 
+ * Get current date-time string:
+ * > new Date().toISOString()
  */
 const data = [
   //--------- fbprep ----------
@@ -86,7 +89,7 @@ const data = [
   { num: 1608, name: "Special Array With X Elements Greater Than or Equal X", method: "specialArray", site: "leetcode", difficulty: "Easy",
     url: "https://leetcode.com/problems/special-array-with-x-elements-greater-than-or-equal-x" },
   { num: 1609, name: "Even Odd Tree", method: "isEvenOddTree", site: "leetcode", difficulty: "Medium",
-    url: "https://leetcode.com/problems/even-odd-tree/" },
+    url: "https://leetcode.com/problems/even-odd-tree/", dtCompleted: "2021-11-09T12:18:36.208Z" },
   { num: 9001, name: "Minimum Swaps to Group All 1's Together", method: "minSwaps", site: "leetcode", difficulty: "Medium", tags: ['amazon'],
     url: "https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together/" },//number is unknown
   { num: 1359, name: "Count All Valid Pickup and Delivery Options", method: "countOrders", site: "leetcode", difficulty: "Hard", tags: ['fb'],

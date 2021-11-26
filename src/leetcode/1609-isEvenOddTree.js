@@ -6,11 +6,14 @@
  *     this.right = (right===undefined ? null : right)
  * }
  */
+const isEvenOddTree = nums => {
+  return isEvenOddTreeCode(buildTreeBfs(nums));
+}
 /**
  * @param {TreeNode} root
  * @return {boolean}
  */
-const isEvenOddTree = root => traverse(root, 0, {});
+const isEvenOddTreeCode = root => traverse(root, 0, {});
 
 const traverse = (node, depth, depthMap) => {
   if (!node) return true;
@@ -22,6 +25,25 @@ const traverse = (node, depth, depthMap) => {
   if (node.val && node.val % 2 + depth % 2 !== 1) return false;
   depthMap[depth] = node.val;
   return traverse(node.left, depth + 1, depthMap) && traverse(node.right, depth + 1, depthMap);
+};
+
+//breadth-first-search (BFS) tree building
+const buildTreeBfs = nums => {
+  nums = [...nums];
+  const root = {val: nums.shift()};
+  let node = root, toBeVisited = [root], val;
+  while (nums.length > 0 && toBeVisited.length > 0) {
+    node = toBeVisited.shift();
+    if (val = nums.shift()) {
+      node.left = {val};
+      toBeVisited.push(node.left);
+    };
+    if (val = nums.shift()) {
+      node.right = {val};
+      toBeVisited.push(node.right);
+    };
+  }
+  return root;
 };
 
 const isEvenOddTreeTests = [
