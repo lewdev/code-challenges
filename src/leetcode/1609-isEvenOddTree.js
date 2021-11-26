@@ -10,37 +10,20 @@
  * @param {TreeNode} root
  * @return {boolean}
  */
-var isEvenOddTree = function(nums) {
-  const size = nums.length;
-  let level = 1, i, num = nums[0];
-  if (num % 2 === 0) return false;
-  while (true) {
-    const nodesOnLevel = level === 0 ? 1 : Math.pow(2, level);
-    const isLevelEven = level === 0 ? false : level % 2 === 0;
-    const startNode = level === 0 ? 0 : 2 ^ (level - 1) + 1;
-    console.log("startNode=", startNode, "nodesOnLevel=", nodesOnLevel);
-    if (startNode >= size) return true;
-    //if even, check for odds
-    for (i = startNode; i < startNode + nodesOnLevel; i++) {
-      num = nums[i];
-      if (num) {
-        let isEven = num % 2 === 0;
-        if (isLevelEven) {
-          if (isEven) {//isOdd
-            console.log('expected even', `level=${level}`, `num=${num}`, `i=${i}`, "Failed");
-            return false;
-          }
-        }
-        else if (!isEven) {
-          console.log('expected odd', `level=${level}`, `num=${num}`, `i=${i}`, "Failed");
-          return false;
-        }
-      }
-    }
-    level++;
+const isEvenOddTree = root => traverse(root, 0, {});
+
+const traverse = (node, depth, depthMap) => {
+  if (!node) return true;
+  if (depthMap[depth] && 
+    ((depth % 2 === 1 && depthMap[depth] <= node.val)
+    || (depth % 2 === 0 && depthMap[depth] >= node.val))) {
+    return false;
   }
-  return true;
+  if (node.val && node.val % 2 + depth % 2 !== 1) return false;
+  depthMap[depth] = node.val;
+  return traverse(node.left, depth + 1, depthMap) && traverse(node.right, depth + 1, depthMap);
 };
+
 const isEvenOddTreeTests = [
   [[1,10,4,3,null,7,9,12,8,6,null,null,2], true],
   [[5,4,2,3,3,7], false],
