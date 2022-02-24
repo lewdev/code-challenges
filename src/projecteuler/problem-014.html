@@ -1,0 +1,30 @@
+<!--
+This is not an optimal solution.
+I should be looking at old solutions without recalculating another collatz array.
+-->
+
+<pre id=o></pre>
+<script>
+const getCollatz = (num, arr, map = {}) => {
+  if (!arr) arr = [num];
+  const isOdd = num % 2 === 1;
+  num = isOdd ? 3 * num + 1 : num / 2;
+  arr.push(num);
+  return num === 1 ? arr : getCollatz(num, arr, map);
+};
+
+const COUNT = 1000000;//1 mil
+let max = 0;
+let num;
+for (let i = 1; i < COUNT; i++) {
+  if (getCollatz(i).length > max) num = i;
+}
+
+o.innerHTML = num;
+
+/*
+//see solution here
+const sol = getCollatz(999999);
+o.innerHTML = JSON.stringify(sol, null, 2);
+*/
+</script>

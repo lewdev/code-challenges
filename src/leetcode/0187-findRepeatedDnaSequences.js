@@ -6,17 +6,14 @@
  * - s[i] is 'A', 'C', 'G', or 'T'.
  */
 var findRepeatedDnaSequences = function(s) {
-  const size = s.length, hashSet = {}, output = [];
+  const size = s.length, hashSet = {}, outputs = {};
   let str;
-  for (let i = 0; i < size - 9; i++) {
+  for (i = 0; i < size - 9; i++) {
     str = s.substr(i, 10);
-    if (!hashSet[str]) hashSet[str] = i;
-    else hashSet[str]++;
+    if (!hashSet[str]) hashSet[str] = 1;
+    else outputs[str] = 1;
   }
-  Object.keys(hashSet).map(a => {
-    if (hashSet[a] >= 2) output.push(a);
-  });
-  return output;
+  return Object.keys(outputs);
 };
 
 // AAAAACCCCC,AAAACCCCCA,AAACCCCCAA,AACCCCCAAA,ACCCCCAAAA,CCCCCAAAAA
