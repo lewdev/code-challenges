@@ -16,7 +16,7 @@ const viewTest = index => {
   const expected = tests[2].innerHTML;
 
   const div = document.createElement("div");
-  div.style = "position: absolute; top: 20px;width: 90%; margin-left: 5%; margin-right: 5%; padding: 1.5rem; border: 1px solid gray;";
+  div.style = "position: fixed; top: 20px;width: 90%; margin-left: 5%; margin-right: 5%; padding: 1.5rem; border: 1px solid gray;";
   div.className = "rounded bg-light";
 
   div.innerHTML = `
@@ -42,10 +42,14 @@ const viewTest = index => {
   document.body.appendChild(div);
 };
 const goToMenu = () => {
+  const name = getUrlParam("p");
+  if (name) {
+    const problem = data.find(a => a.method === name);
+    if (problem) setSite(problem.site)
+  }
   setMenuShow(true);
   setOuputShow(false);
-  setUrlParam("");
-  document.title = "🔥lewdev code solutions";
+  document.title = "lewdev code solutions";
 };
 const run = name => {
   setMenuShow(false);
@@ -56,7 +60,7 @@ const run = name => {
     output.innerHTML = `Problem "${name}" not found.`;
     return;
   }
-  const {url, site, num} = problem;
+  const {url, site, num, params, difficulty, incomplete} = problem;
   const output = document.getElementById("output")
     , title = `${num}. ${problem.name} (☁ ${site})`;
   document.title = title;
@@ -64,14 +68,16 @@ const run = name => {
     <div class="row mt-2 mb-2">
       <div class="col-9">
         <h1>${title}</h1>
+        ${incomplete ? `<div class="text-danger">INCOMPLETE</div>` : ''}
       </div>
       <div class="col-3 text-right">
+        ${showDifficulty(difficulty)}
         <a href="${url}" target="_blank" class="mt-2 btn btn-secondary">🔗 Link to Problem</a>
       </div>
     </div>
     <table id="results" class="table">
     <thead>
-      <th>input</th><th>result</th><th>expected</th><th>P/F</th><th>View</th>
+      <th>${"input,result,expected,P/F,View".split(",").join("</th><th>")}</th>
     </thead>
     <tbody></tbody>
     </table>`;
@@ -90,7 +96,7 @@ const run = name => {
     promises.push(new Promise(res => {
       const input = t[0];
       let result;
-      switch (input.length) {
+      switch (params || 1) {
         case 2: result = myMethod(input[0], input[1]); break;
         case 3: result = myMethod(input[0], input[1], input[2]); break;
         default:
@@ -131,26 +137,36 @@ function loadScript(name) {
       code.innerHTML = `<a href="${urlToCode}">📦 Download</a><pre class="language-js"><code>${Prism.highlight(codeStr, Prism.languages.javascript, 'javascript')}</code></pre>`;
     })
     .then(() => {
-      //console.log("Prism.highlightAll()");
       Prism.highlightAll();
     });
   });
 };
 const setSite = site => {
   selectedSite = site;
-  // sites.map(s => {
-  //   const option = document.createElement("option");
-  //   option.value = s;
-  //   option.innerHTML = s;
-  //   siteList.appendChild(option);
-  // });
   setUrlParam(selectedSite ? "s=" + selectedSite : "");
   renderTopRightMenu();
   renderTable();
 };
+const showDifficultyCount = (data, site, diff) => {
+  const count = data.filter(a => a.site === site && a.difficulty === diff).length;
+  return count > 0 ? `<span class="badge badge-${getDiffClass(diff)}">${count} ${diff}</span>` : '';
+};
+const showDifficulty = diff => {
+  if (!diff) return "";
+  return `<span class="badge badge-${getDiffClass(diff)}">${diff}</span>`;
+};
+const getDiffClass = diff => {
+  let className;
+  switch (diff) {
+    case "Medium": className = "warning"; break;
+    case "Hard": className = "danger"; break;
+    case "Easy": className = "success"; break;
+    default: className = "secondary";
+  }
+  return className;
+};
 window.onload = () => {
   setBackBtnShow(false);
-  
   const methodName = getUrlParam('p');
   if (methodName) {
     const problem = data.find(a => a.method === methodName);
@@ -167,10 +183,21 @@ const renderTable = () => {
   tbody.innerHTML = "";
   data.forEach(a => {
     if (selectedSite && a.site !== selectedSite) return;
-    if (!currSite || currSite !== a.site) addRow([`☁️ ${a.site} <span class="badge badge-secondary">${data.filter(b => a.site === b.site).length}</span>`], tbody);
+    if (!currSite || currSite !== a.site) addRow([
+      `<div class="row rounded">
+        <div class="col-6">
+          ☁️ ${a.site}
+          <span class="badge badge-secondary">${data.filter(b => a.site === b.site).length} total</span>
+        </div>
+        <div class="col-6 text-right">
+          ${["Easy", "Medium", "Hard"].map(d => showDifficultyCount(data, a.site, d)).join(" ")}
+        </div>
+      </div>`
+    ], tbody);
     currSite = a.site;
     addRow([
-      `💡 ${a.num}. ${a.name} ${a.incomplete ? '<span class="text-danger">INCOMPLETE</span>' : ''}`
+      `💡 ${a.num}. ${a.name} ${a.incomplete ? '<span class="text-danger">INCOMPLETE</span>' : ''} <code>${a.method}</code>`
+      , showDifficulty(a.difficulty)
       , `<a href="${a.url}" target="_blank" class="btn btn-secondary">🔗 Link to Problem</a>`
       , `<button class="btn btn-primary" onclick="loadScript('${a.method}')">Run 🏃‍♂️</button>`
     ], tbody);
@@ -181,7 +208,11 @@ const renderTopRightMenu = () => {
   data.forEach(a => siteMap[a.site] = true);
   const sites = Object.keys(siteMap);
   // if (!selectedSite) selectedSite = sites[0];
-  topRightMenu.innerHTML = `<button class="btn btn-${!selectedSite ? 'primary' : 'secondary'}"
-  onclick="setSite('')">All</button>` + sites.map(a => `<button class="btn btn-${a === selectedSite ? 'primary' : 'secondary'}"
-    onclick="setSite('${a}')">${a}</button>`).join('');
+  topRightMenu.innerHTML = `<button class="btn btn-${!selectedSite ? 'primary' : 'secondary'}" 
+    onclick="setSite('')">All <span class="badge badge-info">${data.length}</span></button>`
+    + sites.map(a => `<button class="btn btn-${a === selectedSite ? 'primary' : 'secondary'}"
+    onclick="setSite('${a}')">
+      ${a}
+      <span class="badge badge-info">${data.filter(b => b.site === a).length}</span>
+    </button>`).join('');
 };
