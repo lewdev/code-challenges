@@ -96,6 +96,8 @@ const data = [
     url: "https://leetcode.com/problems/count-all-valid-pickup-and-delivery-options/" },
   { num: 210, name: "Course Schedule II", method: "findOrder", params: 2, site: "leetcode", difficulty: "Medium", tags: ['fb'],
     url: "https://leetcode.com/problems/course-schedule-ii/", incomplete: true },
+  // { num: 8001, name: "", method: "", site: "leetcode", difficulty: "Easy", tags: ['leetcode-contest'],
+  //   url: "" },
   // { num: , name: "", method: "", site: "leetcode", difficulty: "Easy", tags: ['fb'],
   //   url: "" },
 
@@ -130,6 +132,8 @@ const data = [
     url: "https://code.golf/pascals-triangle#javascript" },
   { num: 16, name: "Poker", method: "poker", site: "code.golf",
     url: "https://code.golf/poker#javascript", incomplete: true },
+  { num: 17, name: "Pangram Grep", method: "pangramGrep", site: "code.golf",
+    url: "https://code.golf/pangram-grep#javascript", incomplete: true },
 
   //--------- Project Euler ----------
   { num: 1, name: "Multiples of 3 and 5", method: "sumOfMultiples3and5", params: 2, site: "projecteuler",

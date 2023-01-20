@@ -1,6 +1,3 @@
-
-
-
 const cssColorsCode = (print, arguments) => {
 
 //minified
