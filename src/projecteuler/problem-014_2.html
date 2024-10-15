@@ -1,0 +1,19 @@
+<p id=o></p>
+<script>
+const collatz = n => {
+  let iterations = 1;
+  while (n > 1) {
+    if (n % 2 === 0) n /= 2;
+    else n = 3 * n + 1;
+    iterations++;
+  }
+  return iterations;
+};
+
+let largest = [0, 0];
+for (let i = 2; i < 1000000; i++) {
+  const result = collatz(i);
+  if (result > largest[0]) largest = [result, i];
+}
+o.innerHTML = largest;
+</script>
